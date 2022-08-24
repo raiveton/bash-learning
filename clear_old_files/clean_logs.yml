@@ -1,0 +1,14 @@
+---
+- hosts: auction
+  gather_facts: False
+  tasks:
+    - copy:
+        src: /home/raiveton/adoperator/clear_logs.sh
+        dest: /opt/clear_logs.sh
+        owner: root
+        group: root
+        mode: +x     
+    - ansible.builtin.cron:
+        minute: "0"
+        hour: "0"
+        job: /opt/clear_logs.sh    
